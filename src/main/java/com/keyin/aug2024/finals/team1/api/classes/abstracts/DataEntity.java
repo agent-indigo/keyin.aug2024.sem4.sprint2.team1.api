@@ -3,7 +3,7 @@ import com.keyin.aug2024.finals.team1.api.interfaces.PkAccess;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-public abstract class Entity implements PkAccess {
+public abstract class DataEntity implements PkAccess {
     @SequenceGenerator(
         name = "pk",
         sequenceName = "pk"
@@ -11,7 +11,7 @@ public abstract class Entity implements PkAccess {
     @Id
     @GeneratedValue(generator = "pk")
     protected int pk;
-    public Entity() {}
+    public DataEntity() {}
     @Override
     public final int getPk() {
         return pk;
