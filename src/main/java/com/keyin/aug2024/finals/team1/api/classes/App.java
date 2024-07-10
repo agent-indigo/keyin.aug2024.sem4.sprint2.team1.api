@@ -7,7 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
     "com.keyin.aug2024.finals.team1.api.classes.controllers",
     "com.keyin.aug2024.finals.team1.api.classes.entities",
-    "com.keyin.aug2024.finals.team1.api.classes.services"
+    "com.keyin.aug2024.finals.team1.api.classes.services",
+    "com.keyin.aug2024.finals.team1.api.interfaces.repositories"
 })
 public class App {
     public static void main(String[] args) {
