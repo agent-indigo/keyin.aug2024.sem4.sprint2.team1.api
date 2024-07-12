@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
     "com.keyin.aug2024.finals.team1.api.interfaces.repositories"
 })
 public class App {
+    public App() {}
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
