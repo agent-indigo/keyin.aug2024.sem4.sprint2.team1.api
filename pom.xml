@@ -11,7 +11,7 @@
 		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.keyin.aug2024.finals.team1</groupId>
+	<groupId>com.keyin.aug2024.sem4.sprint2.team1</groupId>
 	<artifactId>api</artifactId>
 	<version>1.0-RELEASE</version>
 	<properties>

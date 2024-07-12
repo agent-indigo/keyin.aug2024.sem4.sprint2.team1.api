@@ -1,4 +1,4 @@
-package com.keyin.aug2024.finals.team1.api.interfaces;
+package com.keyin.aug2024.sem4.sprint2.team1.api.interfaces;
 import jakarta.persistence.Entity;
 import jakarta.persistence.SequenceGenerator;
 @Entity
