@@ -2,7 +2,13 @@
 
 ## Copyright (c) 2024
 
+- [Ashley Colbert](https://github.com/ashley-colbert)
+
 - [Braden Hynes](https://github.com/agent-indigo)
+
+- [Kyla Leaman](https://github.com/kylaleaman)
+
+- [Raymond Payne](https://github.com/BestProductsAlways)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
