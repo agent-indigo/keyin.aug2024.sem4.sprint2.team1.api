@@ -14,6 +14,10 @@ public interface VehicleRepository extends CrudRepository<VehicleEntity, Integer
     List<VehicleEntity> findAllByYear(int year);
     List<VehicleEntity> findAllByCapacity(int capacity);
     List<VehicleEntity> findAllByCategory(VehicleCategory category);
+    List<VehicleEntity> findAllByStdRate(float stdRate);
+    List<VehicleEntity> findAllByPremRate(float premRate);
+    List<VehicleEntity> findAllByStdIns(float stdIns);
+    List<VehicleEntity> findAllByPremIns(float premIns);
     VehicleEntity findByPlates(String plates);
     List<VehicleEntity> findAllByAgency(AgencyEntity agency);
     List<VehicleEntity> findAllByLocation(LocationEntity location);

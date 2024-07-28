@@ -10,6 +10,10 @@ public final class VehicleEntity extends DataEntity {
     private int year;
     private int capacity;
     private VehicleCategory category;
+    private float stdRate;
+    private float premRate;
+    private float stdIns;
+    private float premIns;
     private String plates;
     @OneToOne
     private AgencyEntity agency;
@@ -23,6 +27,10 @@ public final class VehicleEntity extends DataEntity {
         int year,
         int capacity,
         VehicleCategory category,
+        float stdRate,
+        float premRate,
+        float stdIns,
+        float premIns,
         String plates,
         AgencyEntity agency,
         LocationEntity location,
@@ -34,6 +42,10 @@ public final class VehicleEntity extends DataEntity {
         this.year = year;
         this.capacity = capacity;
         this.category = category;
+        this.stdRate = stdRate;
+        this.premRate = premRate;
+        this.stdIns = stdIns;
+        this.premIns = premIns;
         this.plates = plates;
         this.agency = agency;
         this.location = location;
@@ -71,6 +83,30 @@ public final class VehicleEntity extends DataEntity {
     }
     public void setCategory(VehicleCategory category) {
         this.category = category;
+    }
+    public float getStdRate() {
+        return stdRate;
+    }
+    public void setStdRate(float stdRate) {
+        this.stdRate = stdRate;
+    }
+    public float getPremRate() {
+        return premRate;
+    }
+    public void setPremRate(float premRate) {
+        this.premRate = premRate;
+    }
+    public float getStdIns() {
+        return stdIns;
+    }
+    public void setStdIns(float stdIns) {
+        this.stdIns = stdIns;
+    }
+    public float getPremIns() {
+        return premIns;
+    }
+    public void setPremIns(float premIns) {
+        this.premIns = premIns;
     }
     public String getPlates() {
         return plates;
