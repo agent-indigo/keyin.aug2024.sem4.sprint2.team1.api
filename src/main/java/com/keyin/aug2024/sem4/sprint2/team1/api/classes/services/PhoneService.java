@@ -13,7 +13,10 @@ public final class PhoneService implements Serve {
     @Autowired
     private PhoneRepository repo;
     private PhoneEntity current;
-    public PhoneService() {}
+    private String numberDeletedMessage;
+    public PhoneService() {
+        this.numberDeletedMessage = "Phone number deleted.";
+    }
     /**
      * @name    list
      * @desc    List all phone numbers
@@ -233,7 +236,7 @@ public final class PhoneService implements Serve {
     @Override
     public String delete(int pk) {
         repo.deleteById(pk);
-        return "Phone number deleted.";
+        return numberDeletedMessage;
     }
     /**
      * @name    deleteByNumber
@@ -243,7 +246,7 @@ public final class PhoneService implements Serve {
      */
     public String deleteByNumber(String number) {
         repo.deleteByNumber(number);
-        return "Phone number deleted.";
+        return numberDeletedMessage;
     }
     /**
      * @name    deleteByContact
@@ -263,6 +266,6 @@ public final class PhoneService implements Serve {
      */
     public String deleteByLocation(LocationEntity location) {
         repo.deleteByLocation(location);
-        return "Phone number deleted.";
+        return numberDeletedMessage;
     }
 }
