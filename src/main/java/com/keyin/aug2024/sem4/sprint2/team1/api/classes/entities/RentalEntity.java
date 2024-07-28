@@ -7,6 +7,7 @@ public final class RentalEntity {
     private VehicleEntity vehicle;
     @ManyToOne
     private ContactEntity contact;
+    private String license;
     @ManyToOne
     private AgencyEntity agency;
     @ManyToOne
@@ -21,6 +22,7 @@ public final class RentalEntity {
     public RentalEntity(
         VehicleEntity vehicle,
         ContactEntity contact,
+        String license,
         AgencyEntity agency,
         LocationEntity rentedFrom,
         ZonedDateTime rentedOn,
@@ -31,6 +33,7 @@ public final class RentalEntity {
         super();
         this.vehicle = vehicle;
         this.contact = contact;
+        this.license = license;
         this.agency = agency;
         this.rentedFrom = rentedFrom;
         this.rentedOn = rentedOn;
@@ -41,6 +44,7 @@ public final class RentalEntity {
     public RentalEntity(
         VehicleEntity vehicle,
         ContactEntity contact,
+        String license,
         AgencyEntity agency,
         LocationEntity rentedFrom,
         ZonedDateTime rentedOn,
@@ -49,6 +53,7 @@ public final class RentalEntity {
         super();
         this.vehicle = vehicle;
         this.contact = contact;
+        this.license = license;
         this.agency = agency;
         this.rentedFrom = rentedFrom;
         this.rentedOn = rentedOn;
@@ -68,6 +73,12 @@ public final class RentalEntity {
     }
     public void setContact(ContactEntity contact) {
         this.contact = contact;
+    }
+    public String getLicense() {
+        return license;
+    }
+    public void setLicense(String license) {
+        this.license = license;
     }
     public AgencyEntity getAgency() {
         return agency;
