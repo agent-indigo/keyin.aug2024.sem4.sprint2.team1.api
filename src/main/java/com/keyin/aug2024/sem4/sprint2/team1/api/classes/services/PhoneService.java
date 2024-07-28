@@ -36,6 +36,15 @@ public final class PhoneService implements Serve {
         return repo.findById(pk).orElse(null);
     }
     /**
+     * @name    getByNumber
+     * @desc    Get a phone number by the recorded number
+     * @route   GET /api/phones/:number
+     * @access  private
+     */
+    public PhoneEntity getByNumber(String number) {
+        return repo.findByNumber(number);
+    }
+    /**
      * @name    getByContact
      * @desc    List all phone numbers associated with a contact
      * @route   GET /api/phones/:contact
@@ -223,6 +232,37 @@ public final class PhoneService implements Serve {
      */
     @Override
     public String delete(int pk) {
+        repo.deleteById(pk);
+        return "Phone number deleted.";
+    }
+    /**
+     * @name    deleteByNumber
+     * @desc    Delete a phone number by the recorded number
+     * @route   DELETE /api/phones/:number
+     * @access  private
+     */
+    public String deleteByNumber(String number) {
+        repo.deleteByNumber(number);
+        return "Phone number deleted.";
+    }
+    /**
+     * @name    deleteByContact
+     * @desc    Delete all phone numbers associated with a contact
+     * @route   DELETE /api/phones/:contact
+     * @access  private
+     */
+    public String deleteByContact(ContactEntity contact) {
+        repo.deleteAllByContact(contact);
+        return "Phone numbers deleted.";
+    }
+    /**
+     * @name    deleteByLocation
+     * @desc    Delete a phone number by its associated location
+     * @route   DELETE /api/phones/:location
+     * @access  private
+     */
+    public String deleteByLocation(LocationEntity location) {
+        repo.deleteByLocation(location);
         return "Phone number deleted.";
     }
 }

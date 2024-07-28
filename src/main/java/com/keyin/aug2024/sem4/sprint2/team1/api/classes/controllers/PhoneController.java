@@ -41,6 +41,16 @@ public final class PhoneController implements Control {
         return service.getByPk(pk);
     }
     /**
+     * @name    getByNumber
+     * @desc    Get a phone number by the recorded number
+     * @route   GET /api/phones/:number
+     * @access  private
+     */
+    @GetMapping("/api/phones/{number}")
+    public PhoneEntity getByNumber(@PathVariable String number) {
+        return service.getByNumber(number);
+    }
+    /**
      * @name    getByContact
      * @desc    List all phone numbers associated with a contact
      * @route   GET /api/phones/:contact
@@ -215,5 +225,35 @@ public final class PhoneController implements Control {
     @DeleteMapping("/api/phones/{pk}")
     public String delete(@PathVariable int pk) {
         return service.delete(pk);
+    }
+    /**
+     * @name    deleteByNumber
+     * @desc    Delete a phone number by the recorded number
+     * @route   DELETE /api/phones/:number
+     * @access  private
+     */
+    @DeleteMapping("/api/phones/{number}")
+    public String deleteByNumber(@PathVariable String number) {
+        return service.deleteByNumber(number);
+    }
+    /**
+     * @name    deleteByContact
+     * @desc    Delete all phone numbers associated with a contact
+     * @route   DELETE /api/phones/:contact
+     * @access  private
+     */
+    @DeleteMapping("/api/phones/{contact}")
+    public String deleteByContact(@PathVariable ContactEntity contact) {
+        return service.deleteByContact(contact);
+    }
+    /**
+     * @name    deleteByLocation
+     * @desc    Delete a phone number by its associated location
+     * @route   DELETE /api/phones/:location
+     * @access  private
+     */
+    @DeleteMapping("/api/phones/{location}")
+    public String deleteByLocation(@PathVariable LocationEntity location) {
+        return service.deleteByLocation(location);
     }
 }
