@@ -12,6 +12,7 @@ import java.util.List;
 public interface RentalRepository extends CrudRepository<RentalEntity, Integer> {
     List<RentalEntity> findAllByVehicle(VehicleEntity vehicle);
     List<RentalEntity> findAllByContact(ContactEntity contact);
+    List<RentalEntity> findAllByLicense(String license);
     List<RentalEntity> findAllByAgency(AgencyEntity agency);
     List<RentalEntity> findAllByRentedFrom(LocationEntity rentedFrom);
     List<RentalEntity> findAllByRentedOn(ZonedDateTime rentedOn);
