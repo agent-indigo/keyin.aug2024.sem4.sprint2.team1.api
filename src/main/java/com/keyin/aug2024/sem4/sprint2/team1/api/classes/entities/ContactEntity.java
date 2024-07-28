@@ -22,10 +22,8 @@ public final class ContactEntity extends DataEntity {
     @Nullable
     @OneToMany
     private List<RentalEntity> rentals;
-    private boolean active;
     public ContactEntity() {
         super();
-        this.active = true;
     }
     public String getFirst() {
         return first;
@@ -68,11 +66,5 @@ public final class ContactEntity extends DataEntity {
     }
     public void setRentals(List<RentalEntity> rentals) {
         this.rentals = rentals;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }

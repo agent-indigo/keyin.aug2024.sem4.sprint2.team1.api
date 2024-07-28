@@ -23,10 +23,8 @@ public final class RentalEntity {
     @Nullable
     @ManyToOne
     private LocationEntity returnedTo;
-    private boolean returned;
     public RentalEntity() {
         super();
-        this.returned = false;
     }
     public VehicleEntity getVehicle() {
         return vehicle;
@@ -81,11 +79,5 @@ public final class RentalEntity {
     }
     public void setReturnedTo(LocationEntity returnedTo) {
         this.returnedTo = returnedTo;
-    }
-    public boolean isReturned() {
-        return returned;
-    }
-    public void setReturned(boolean returned) {
-        this.returned = returned;
     }
 }

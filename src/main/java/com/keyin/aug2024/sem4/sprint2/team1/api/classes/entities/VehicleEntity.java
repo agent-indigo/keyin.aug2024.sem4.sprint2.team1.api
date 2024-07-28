@@ -26,11 +26,9 @@ public final class VehicleEntity extends DataEntity {
     @OneToMany
     private List<RentalEntity> rentals;
     private boolean rented;
-    private boolean active;
     public VehicleEntity() {
         super();
         this.rented = false;
-        this.active = true;
     }
     public String getManufacturer() {
         return manufacturer;
@@ -115,11 +113,5 @@ public final class VehicleEntity extends DataEntity {
     }
     public void setRented(boolean rented) {
         this.rented = rented;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }
