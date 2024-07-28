@@ -15,13 +15,15 @@ public final class AgencyEntity extends DataEntity {
     @Nullable
     @OneToMany
     private List<RentalEntity> rentals;
+    private boolean active;
     public AgencyEntity(
         String name,
         String website,
         List<LocationEntity> locations,
         List<ContactEntity> contacts,
         List<VehicleEntity> vehicles,
-        List<RentalEntity> rentals
+        List<RentalEntity> rentals,
+        boolean active
     ) {
         super();
         this.name = name;
@@ -30,13 +32,15 @@ public final class AgencyEntity extends DataEntity {
         this.contacts = contacts;
         this.vehicles = vehicles;
         this.rentals = rentals;
+        this.active = active;
     }
     public AgencyEntity(
         String name,
         String website,
         List<LocationEntity> locations,
         List<ContactEntity> contacts,
-        List<VehicleEntity> vehicles
+        List<VehicleEntity> vehicles,
+        boolean active
     ) {
         super();
         this.name = name;
@@ -44,6 +48,7 @@ public final class AgencyEntity extends DataEntity {
         this.locations = locations;
         this.contacts = contacts;
         this.vehicles = vehicles;
+        this.active = active;
     }
     public AgencyEntity() {
         super();
@@ -83,5 +88,11 @@ public final class AgencyEntity extends DataEntity {
     }
     public void setRentals(List<RentalEntity> rentals) {
         this.rentals = rentals;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

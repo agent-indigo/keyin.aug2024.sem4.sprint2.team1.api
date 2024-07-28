@@ -6,6 +6,7 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.RentalEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.VehicleEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 @Repository
 public interface AgencyRepository extends CrudRepository<AgencyEntity, Integer> {
     AgencyEntity findByName(String name);
@@ -14,6 +15,5 @@ public interface AgencyRepository extends CrudRepository<AgencyEntity, Integer> 
     AgencyEntity findByContact(ContactEntity contact);
     AgencyEntity findByVehicle(VehicleEntity vehicle);
     AgencyEntity findByRental(RentalEntity rental);
-    void deleteByName(String name);
-    void deleteByWebsite(String website);
+    List<AgencyEntity> findByStatus(boolean active);
 }
