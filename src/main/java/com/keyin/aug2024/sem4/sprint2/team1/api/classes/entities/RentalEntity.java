@@ -1,4 +1,5 @@
 package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
+import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import java.time.ZonedDateTime;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
@@ -6,7 +7,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "rentals")
-public final class RentalEntity {
+public final class RentalEntity extends DataEntity {
     @ManyToOne
     private VehicleEntity vehicle;
     @ManyToOne
