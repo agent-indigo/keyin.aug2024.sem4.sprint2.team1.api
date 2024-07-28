@@ -23,10 +23,8 @@ public final class LocationEntity extends DataEntity {
     @ManyToMany
     private List<RentalEntity> rentals;
     private String hours;
-    private boolean active;
     public LocationEntity() {
         super();
-        this.active = true;
     }
     public AgencyEntity getAgency() {
         return agency;
@@ -63,11 +61,5 @@ public final class LocationEntity extends DataEntity {
     }
     public void setHours(String hours) {
         this.hours = hours;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }

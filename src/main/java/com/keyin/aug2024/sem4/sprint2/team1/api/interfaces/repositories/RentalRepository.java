@@ -20,6 +20,5 @@ public interface RentalRepository extends CrudRepository<RentalEntity, UUID> {
     List<RentalEntity> findAllByDue(ZonedDateTime due);
     List<RentalEntity> findAllByReturnedOn(ZonedDateTime returnedOn);
     List<RentalEntity> findAllByReturnedTo(LocationEntity returnedTo);
-    List<RentalEntity> findAllByReturned(boolean returned);
     List<RentalEntity> findAllByActive(boolean active);
 }

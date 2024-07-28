@@ -19,10 +19,8 @@ public final class AgencyEntity extends DataEntity {
     @Nullable
     @OneToMany
     private List<RentalEntity> rentals;
-    private boolean active;
     public AgencyEntity() {
         super();
-        this.active = true;
     }
     public String getName() {
         return name;
@@ -59,11 +57,5 @@ public final class AgencyEntity extends DataEntity {
     }
     public void setRentals(List<RentalEntity> rentals) {
         this.rentals = rentals;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }

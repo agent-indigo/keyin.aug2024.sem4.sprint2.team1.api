@@ -24,10 +24,8 @@ public final class AddressEntity extends DataEntity {
     @Nullable
     @OneToOne
     private LocationEntity location;
-    private boolean active;
     public AddressEntity() {
         super();
-        this.active = true;
     }
     public int getNumber() {
         return number;
@@ -82,11 +80,5 @@ public final class AddressEntity extends DataEntity {
     }
     public void setLocation(LocationEntity location) {
         this.location = location;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }

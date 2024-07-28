@@ -17,10 +17,8 @@ public final class PhoneEntity extends DataEntity {
     @OneToOne
     private LocationEntity location;
     private PhoneEmailCategory category;
-    private boolean active;
     public PhoneEntity() {
         super();
-        this.active = true;
     }
     public String getNumber() {
         return number;
@@ -45,11 +43,5 @@ public final class PhoneEntity extends DataEntity {
     }
     public void setCategory(PhoneEmailCategory category) {
         this.category = category;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }

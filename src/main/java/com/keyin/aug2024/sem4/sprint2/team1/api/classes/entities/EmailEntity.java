@@ -11,10 +11,8 @@ public final class EmailEntity extends DataEntity {
     @ManyToOne
     private ContactEntity contact;
     private PhoneEmailCategory category;
-    private boolean active;
     public EmailEntity() {
         super();
-        this.active = true;
     }
     public String getAddress() {
         return address;
@@ -33,11 +31,5 @@ public final class EmailEntity extends DataEntity {
     }
     public void setCategory(PhoneEmailCategory category) {
         this.category = category;
-    }
-    public boolean isActive() {
-        return active;
-    }
-    public void setActive(boolean active) {
-        this.active = active;
     }
 }
