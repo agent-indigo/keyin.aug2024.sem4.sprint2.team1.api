@@ -27,8 +27,8 @@ public interface VehicleRepository extends CrudRepository<VehicleEntity, UUID> {
     VehicleEntity findByRental(RentalEntity rental);
     List<VehicleEntity> findAllByRented(boolean rented);
     List<VehicleEntity> findAllByActive(boolean active);
-    @Query("SELECT * FROM vehicles WHERE stdRate < :max")
+    @Query("SELECT v FROM VehicleEntity v WHERE v.stdRate < :max")
     List<VehicleEntity> findAllWithStdUnder(@Param("max") float max);
-    @Query("SELECT * FROM vehicles WHERE premRate < :max")
+    @Query("SELECT v FROM VehicleEntity v WHERE v.premRate < :max")
     List<VehicleEntity> findAllWithPremUnder(@Param("max") float max);
 }

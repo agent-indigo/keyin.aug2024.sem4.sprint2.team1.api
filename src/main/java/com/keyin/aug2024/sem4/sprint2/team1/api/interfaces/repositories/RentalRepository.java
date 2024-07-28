@@ -4,6 +4,8 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.ContactEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.LocationEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.RentalEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.VehicleEntity;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.time.ZonedDateTime;
@@ -21,4 +23,6 @@ public interface RentalRepository extends CrudRepository<RentalEntity, UUID> {
     List<RentalEntity> findAllByReturnedOn(ZonedDateTime returnedOn);
     List<RentalEntity> findAllByReturnedTo(LocationEntity returnedTo);
     List<RentalEntity> findAllByActive(boolean active);
+    @Query("SELECT r FROM RentalEntity r WHERE r.due < CURRENT_TIMESTAMP")
+    List<RentalEntity> findAllOverdue();
 }
