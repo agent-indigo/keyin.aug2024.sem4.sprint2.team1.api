@@ -2,9 +2,11 @@ package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.ContactRole;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+@Entity
 public final class ContactEntity extends DataEntity {
     private String first;
     private String last;
@@ -18,42 +20,10 @@ public final class ContactEntity extends DataEntity {
     @Nullable
     @OneToMany
     private List<RentalEntity> rentals;
-    public ContactEntity(
-        String first,
-        String last,
-        ContactRole role,
-        List<AddressEntity> addresses,
-        List<PhoneEntity> phones,
-        List<EmailEntity> emails,
-        List<RentalEntity> rentals
-    ) {
-        super();
-        this.first = first;
-        this.last = last;
-        this.role = role;
-        this.addresses = addresses;
-        this.phones = phones;
-        this.emails = emails;
-        this.rentals = rentals;
-    }
-    public ContactEntity(
-        String first,
-        String last,
-        ContactRole role,
-        List<AddressEntity> addresses,
-        List<PhoneEntity> phones,
-        List<EmailEntity> emails
-    ) {
-        super();
-        this.first = first;
-        this.last = last;
-        this.role = role;
-        this.addresses = addresses;
-        this.phones = phones;
-        this.emails = emails;
-    }
+    private boolean active;
     public ContactEntity() {
         super();
+        this.active = true;
     }
     public String getFirst() {
         return first;
@@ -96,5 +66,11 @@ public final class ContactEntity extends DataEntity {
     }
     public void setRentals(List<RentalEntity> rentals) {
         this.rentals = rentals;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

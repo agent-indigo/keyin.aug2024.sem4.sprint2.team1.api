@@ -7,8 +7,9 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.enums.VehicleCategory;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.UUID;
 @Repository
-public interface VehicleRepository extends CrudRepository<VehicleEntity, Integer> {
+public interface VehicleRepository extends CrudRepository<VehicleEntity, UUID> {
     List<VehicleEntity> findAllByManufacturer(String manufacturer);
     List<VehicleEntity> findAllByModel(String model);
     List<VehicleEntity> findAllByYear(int year);

@@ -2,10 +2,12 @@ package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import java.util.List;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+@Entity
 public final class LocationEntity extends DataEntity {
     @ManyToOne
     private AgencyEntity agency;
@@ -19,38 +21,10 @@ public final class LocationEntity extends DataEntity {
     @ManyToMany
     private List<RentalEntity> rentals;
     private String hours;
-    public LocationEntity(
-        AgencyEntity agency,
-        AddressEntity address,
-        PhoneEntity phone,
-        List<VehicleEntity> vehicles,
-        List<RentalEntity> rentals,
-        String hours
-    ) {
-        super();
-        this.agency = agency;
-        this.address = address;
-        this.phone = phone;
-        this.vehicles = vehicles;
-        this.rentals = rentals;
-        this.hours = hours;
-    }
-    public LocationEntity(
-        AgencyEntity agency,
-        AddressEntity address,
-        PhoneEntity phone,
-        List<VehicleEntity> vehicles,
-        String hours
-    ) {
-        super();
-        this.agency = agency;
-        this.address = address;
-        this.phone = phone;
-        this.vehicles = vehicles;
-        this.hours = hours;
-    }
+    private boolean active;
     public LocationEntity() {
         super();
+        this.active = true;
     }
     public AgencyEntity getAgency() {
         return agency;
@@ -87,5 +61,11 @@ public final class LocationEntity extends DataEntity {
     }
     public void setHours(String hours) {
         this.hours = hours;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

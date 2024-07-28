@@ -1,18 +1,18 @@
 package com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts;
-import com.keyin.aug2024.sem4.sprint2.team1.api.interfaces.PkAccess;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-public abstract class DataEntity implements PkAccess {
+import java.util.UUID;
+public abstract class DataEntity {
     @Id
-    @GeneratedValue(generator = "pk")
-    protected int pk;
-    public DataEntity() {}
-    @Override
-    public final int getPk() {
+    @GeneratedValue(generator = "UUID")
+    protected UUID pk;
+    public DataEntity() {
+        this.pk = UUID.randomUUID();
+    }
+    public final UUID getPk() {
         return pk;
     }
-    @Override
-    public final void setPk(int pk) {
+    public final void setPk(UUID pk) {
         this.pk = pk;
     }
 }

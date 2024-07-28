@@ -2,8 +2,10 @@ package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.VehicleCategory;
 import java.util.List;
+import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+@Entity
 public final class VehicleEntity extends DataEntity {
     private String manufacturer;
     private String model;
@@ -21,38 +23,10 @@ public final class VehicleEntity extends DataEntity {
     private LocationEntity location;
     @OneToMany
     private List<RentalEntity> rentals;
-    public VehicleEntity(
-        String manufacturer,
-        String model,
-        int year,
-        int capacity,
-        VehicleCategory category,
-        float stdRate,
-        float premRate,
-        float stdIns,
-        float premIns,
-        String plates,
-        AgencyEntity agency,
-        LocationEntity location,
-        List<RentalEntity> rentals
-    ) {
-        super();
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.year = year;
-        this.capacity = capacity;
-        this.category = category;
-        this.stdRate = stdRate;
-        this.premRate = premRate;
-        this.stdIns = stdIns;
-        this.premIns = premIns;
-        this.plates = plates;
-        this.agency = agency;
-        this.location = location;
-        this.rentals = rentals;
-    }
+    private boolean active;
     public VehicleEntity() {
         super();
+        this.active = true;
     }
     public String getManufacturer() {
         return manufacturer;
@@ -131,5 +105,11 @@ public final class VehicleEntity extends DataEntity {
     }
     public void setRentals(List<RentalEntity> rentals) {
         this.rentals = rentals;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

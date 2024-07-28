@@ -3,20 +3,19 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.ContactEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.LocationEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.PhoneEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.PhoneEmailCategory;
-import com.keyin.aug2024.sem4.sprint2.team1.api.interfaces.Serve;
 import com.keyin.aug2024.sem4.sprint2.team1.api.interfaces.repositories.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-public final class PhoneService implements Serve {
+@Service
+public final class PhoneService {
     @Autowired
     private PhoneRepository repo;
     private PhoneEntity current;
-    private String numberDeletedMessage;
-    public PhoneService() {
-        this.numberDeletedMessage = "Phone number deleted.";
-    }
+    public PhoneService() {}
     /**
      * @name    list
      * @desc    List all phone numbers
@@ -35,8 +34,8 @@ public final class PhoneService implements Serve {
      * @route   GET /api/phones/:pk
      * @access  private
      */
-    public PhoneEntity getByPk(int pk) {
-        return repo.findById(pk).orElse(null);
+    public PhoneEntity getByPk(UUID pk) {
+        return repo.findById(pk).get();
     }
     /**
      * @name    getByNumber
@@ -73,7 +72,7 @@ public final class PhoneService implements Serve {
     }
     /**
      * @name    getByLocation
-     * @desc    Get a phone number by its location
+     * @desc    Get the phone number of the given agency location
      * @route   GET /api/phones/:location
      * @access  private
      */
@@ -90,30 +89,13 @@ public final class PhoneService implements Serve {
         return repo.save(number);
     }
     /**
-     * @name    edit
-     * @desc    Edit a phone number
-     * @route   PUT /api/phones/:pk
-     * @access  private
-     */
-    public PhoneEntity edit(
-        int pk,
-        PhoneEntity update
-    ) {
-        this.current = repo.findById(pk).get();
-        current.setNumber(update.getNumber());
-        current.setContacts(update.getContacts());
-        current.setCategory(update.getCategory());
-        current.setLocation(update.getLocation());
-        return repo.save(current);
-    }
-    /**
      * @name    editNumber
      * @desc    Edit a phone number
      * @route   PATCH /api/phones/:pk/number
      * @access  private
      */
     public PhoneEntity editNumber(
-        int pk,
+        UUID pk,
         String number
     ) {
         this.current = repo.findById(pk).get();
@@ -127,7 +109,7 @@ public final class PhoneService implements Serve {
      * @access  private
      */
     public PhoneEntity switchCategory(
-        int pk,
+        UUID pk,
         PhoneEmailCategory category
     ) {
         this.current = repo.findById(pk).get();
@@ -141,7 +123,7 @@ public final class PhoneService implements Serve {
      * @access  private
      */
     public PhoneEntity addLocation(
-        int pk,
+        UUID pk,
         LocationEntity location
     ) {
         this.current = repo.findById(pk).get();
@@ -154,7 +136,7 @@ public final class PhoneService implements Serve {
      * @route   DELETE /api/phones/:pk/location
      * @access  private
      */
-    public PhoneEntity deleteLocation(int pk) {
+    public PhoneEntity deleteLocation(UUID pk) {
         this.current = repo.findById(pk).get();
         current.setLocation(null);
         return repo.save(current);
@@ -166,7 +148,7 @@ public final class PhoneService implements Serve {
      * @access  private
      */
     public PhoneEntity addContact(
-        int pk,
+        UUID pk,
         ContactEntity contact
     ) {
         this.current = repo.findById(pk).get();
@@ -180,7 +162,7 @@ public final class PhoneService implements Serve {
      * @access  private
      */
     public PhoneEntity addContacts(
-        int pk,
+        UUID pk,
         List<ContactEntity> contacts
     ) {
         this.current = repo.findById(pk).get();
@@ -194,7 +176,7 @@ public final class PhoneService implements Serve {
      * @access  private
      */
     public PhoneEntity replaceContact(
-        int pk,
+        UUID pk,
         int index,
         ContactEntity contact
     ) {
@@ -209,7 +191,7 @@ public final class PhoneService implements Serve {
      * @access  private
      */
     public PhoneEntity deleteContact(
-        int pk,
+        UUID pk,
         int index
     ) {
         this.current = repo.findById(pk).get();
@@ -222,50 +204,31 @@ public final class PhoneService implements Serve {
      * @route   DELETE /api/phones/:pk/contacts
      * @access  private
      */
-    public PhoneEntity deleteContacts(int pk) {
+    public PhoneEntity deleteContacts(UUID pk) {
         this.current = repo.findById(pk).get();
         current.getContacts().clear();
         return repo.save(current);
     }
     /**
-     * @name    delete
-     * @desc    Delete a phone number
-     * @route   DELETE /api/phones/:pk
+     * @name    activate
+     * @desc    Activate a phone number
+     * @route   GET /api/phones/:pk/activate
      * @access  private
      */
-    @Override
-    public String delete(int pk) {
-        repo.deleteById(pk);
-        return numberDeletedMessage;
+    public PhoneEntity activate(UUID pk) {
+        this.current = repo.findById(pk).get();
+        current.setActive(true);
+        return repo.save(current);
     }
     /**
-     * @name    deleteByNumber
-     * @desc    Delete a phone number by the recorded number
-     * @route   DELETE /api/phones/:number
+     * @name    deactivate
+     * @desc    Deactivate a phone number
+     * @route   GET /api/phones/:pk/deactivate
      * @access  private
      */
-    public String deleteByNumber(String number) {
-        repo.deleteByNumber(number);
-        return numberDeletedMessage;
-    }
-    /**
-     * @name    deleteByContact
-     * @desc    Delete all phone numbers associated with a contact
-     * @route   DELETE /api/phones/:contact
-     * @access  private
-     */
-    public String deleteByContact(ContactEntity contact) {
-        repo.deleteAllByContact(contact);
-        return "Phone numbers deleted.";
-    }
-    /**
-     * @name    deleteByLocation
-     * @desc    Delete a phone number by its associated location
-     * @route   DELETE /api/phones/:location
-     * @access  private
-     */
-    public String deleteByLocation(LocationEntity location) {
-        repo.deleteByLocation(location);
-        return numberDeletedMessage;
+    public PhoneEntity deactivate(UUID pk) {
+        this.current = repo.findById(pk).get();
+        current.setActive(false);
+        return repo.save(current);
     }
 }

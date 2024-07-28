@@ -7,8 +7,9 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.enums.ProvTerrCode;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.UUID;
 @Repository
-public interface AddressRepository extends CrudRepository<AddressEntity, Integer> {
+public interface AddressRepository extends CrudRepository<AddressEntity, UUID> {
     List<AddressEntity> findAllByNumber(int number);
     List<AddressEntity> findAllByStreet(String street);
     List<AddressEntity> findAllByUnit(int unit);

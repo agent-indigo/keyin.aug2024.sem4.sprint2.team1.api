@@ -3,8 +3,10 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.PhoneEmailCategory;
 import java.util.List;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+@Entity
 public final class PhoneEntity extends DataEntity {
     private String number;
     @ManyToMany
@@ -13,30 +15,10 @@ public final class PhoneEntity extends DataEntity {
     @OneToOne
     private LocationEntity location;
     private PhoneEmailCategory category;
-    public PhoneEntity(
-        String number,
-        List<ContactEntity> contacts,
-        LocationEntity location,
-        PhoneEmailCategory category
-    ) {
-        super();
-        this.number = number;
-        this.contacts = contacts;
-        this.location = location;
-        this.category = category;
-    }
-    public PhoneEntity(
-        String number,
-        List<ContactEntity> contacts,
-        PhoneEmailCategory category
-    ) {
-        super();
-        this.number = number;
-        this.contacts = contacts;
-        this.category = category;
-    }
+    private boolean active;
     public PhoneEntity() {
         super();
+        this.active = true;
     }
     public String getNumber() {
         return number;
@@ -61,5 +43,11 @@ public final class PhoneEntity extends DataEntity {
     }
     public void setCategory(PhoneEmailCategory category) {
         this.category = category;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

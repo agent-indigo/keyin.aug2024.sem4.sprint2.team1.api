@@ -4,17 +4,20 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.LocationEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.PhoneEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.services.PhoneService;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.PhoneEmailCategory;
-import com.keyin.aug2024.sem4.sprint2.team1.api.interfaces.Control;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
-public final class PhoneController implements Control {
+import java.util.UUID;
+@RestController
+@CrossOrigin
+public final class PhoneController {
     @Autowired
     private PhoneService service;
     public PhoneController() {
@@ -37,7 +40,7 @@ public final class PhoneController implements Control {
      * @access  private
      */
     @GetMapping("/api/phones/{pk}")
-    public PhoneEntity getByPk(@PathVariable int pk) {
+    public PhoneEntity getByPk(@PathVariable UUID pk) {
         return service.getByPk(pk);
     }
     /**
@@ -72,11 +75,11 @@ public final class PhoneController implements Control {
     }
     /**
      * @name    getByLocation
-     * @desc    Get a phone number by its location
+     * @desc    Get the phone number of the given agency location
      * @route   GET /api/phones/:location
      * @access  private
      */
-    @GetMapping("/api/phones/:location")
+    @GetMapping("/api/phones/{location}")
     public PhoneEntity getByLocation(@PathVariable LocationEntity location) {
         return service.getByLocation(location);
     }
@@ -91,19 +94,6 @@ public final class PhoneController implements Control {
         return service.add(number);
     }
     /**
-     * @name    edit
-     * @desc    Edit a phone number
-     * @route   PUT /api/phones/:pk
-     * @access  private
-     */
-    @PutMapping("/api/phones/{pk}")
-    public PhoneEntity edit(
-        @PathVariable int pk,
-        @RequestBody PhoneEntity update
-    ) {
-        return service.edit(pk, update);
-    }
-    /**
      * @name    editNumber
      * @desc    Edit a phone number
      * @route   PATCH /api/phones/:pk/number
@@ -111,7 +101,7 @@ public final class PhoneController implements Control {
      */
     @PatchMapping("/api/phones/{pk}/number")
     public PhoneEntity editNumber(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @RequestBody String number
     ) {
         return service.editNumber(pk, number);
@@ -124,7 +114,7 @@ public final class PhoneController implements Control {
      */
     @PatchMapping("/api/phones/{pk}/category")
     public PhoneEntity switchCategory(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @RequestBody PhoneEmailCategory category
     ) {
         return service.switchCategory(pk, category);
@@ -137,7 +127,7 @@ public final class PhoneController implements Control {
      */
     @PostMapping("/api/phones/:pk")
     public PhoneEntity addLocation(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @RequestBody LocationEntity location
     ) {
         return service.addLocation(pk, location);
@@ -149,7 +139,7 @@ public final class PhoneController implements Control {
      * @access  private
      */
     @DeleteMapping("/api/phones/{pk}/location")
-    public PhoneEntity deleteLocation(@PathVariable int pk) {
+    public PhoneEntity deleteLocation(@PathVariable UUID pk) {
         return service.deleteLocation(pk);
     }
     /**
@@ -160,7 +150,7 @@ public final class PhoneController implements Control {
      */
     @PostMapping("/api/phones/{pk}/contacts")
     public PhoneEntity addContact(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @RequestBody ContactEntity contact
     ) {
         return service.addContact(pk, contact);
@@ -173,7 +163,7 @@ public final class PhoneController implements Control {
      */
     @PostMapping("/api/phones/{pk}")
     public PhoneEntity addContacts(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @RequestBody List<ContactEntity> contacts
     ) {
         return service.addContacts(pk, contacts);
@@ -186,7 +176,7 @@ public final class PhoneController implements Control {
      */
     @PatchMapping("/api/phones/{pk}/contacts/{index}")
     public PhoneEntity replaceContact(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @PathVariable int index,
         @RequestBody ContactEntity contact
     ) {
@@ -200,7 +190,7 @@ public final class PhoneController implements Control {
      */
     @DeleteMapping("/api/phones/{pk}/contacts/{index}")
     public PhoneEntity deleteContact(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @PathVariable int index
     ) {
         return service.deleteContact(pk, index);
@@ -212,48 +202,27 @@ public final class PhoneController implements Control {
      * @access  private
      */
     @DeleteMapping("/api/phones/{pk}/contacts")
-    public PhoneEntity deleteContacts(@PathVariable int pk) {
+    public PhoneEntity deleteContacts(@PathVariable UUID pk) {
         return service.deleteContacts(pk);
     }
     /**
-     * @name    delete
-     * @desc    Delete a phone number
-     * @route   DELETE /api/phones/:pk
+     * @name    activate
+     * @desc    Activate a phone number
+     * @route   PATCH /api/phones/:pk/activate
      * @access  private
      */
-    @Override
-    @DeleteMapping("/api/phones/{pk}")
-    public String delete(@PathVariable int pk) {
-        return service.delete(pk);
+    @GetMapping("/api/phones/{pk}/activate")
+    public PhoneEntity activate(@PathVariable UUID pk) {
+        return service.activate(pk);
     }
     /**
-     * @name    deleteByNumber
-     * @desc    Delete a phone number by the recorded number
-     * @route   DELETE /api/phones/:number
+     * @name    deactivate
+     * @desc    Deactivate a phone number
+     * @route   PATCH /api/phones/:pk/deactivate
      * @access  private
      */
-    @DeleteMapping("/api/phones/{number}")
-    public String deleteByNumber(@PathVariable String number) {
-        return service.deleteByNumber(number);
-    }
-    /**
-     * @name    deleteByContact
-     * @desc    Delete all phone numbers associated with a contact
-     * @route   DELETE /api/phones/:contact
-     * @access  private
-     */
-    @DeleteMapping("/api/phones/{contact}")
-    public String deleteByContact(@PathVariable ContactEntity contact) {
-        return service.deleteByContact(contact);
-    }
-    /**
-     * @name    deleteByLocation
-     * @desc    Delete a phone number by its associated location
-     * @route   DELETE /api/phones/:location
-     * @access  private
-     */
-    @DeleteMapping("/api/phones/{location}")
-    public String deleteByLocation(@PathVariable LocationEntity location) {
-        return service.deleteByLocation(location);
+    @GetMapping("/api/phone/{pk}/deactivate")
+    public PhoneEntity deactivate(@PathVariable UUID pk) {
+        return service.deactivate(pk);
     }
 }

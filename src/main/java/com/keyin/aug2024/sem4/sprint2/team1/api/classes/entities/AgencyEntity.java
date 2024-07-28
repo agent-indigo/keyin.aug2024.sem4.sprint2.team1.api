@@ -2,7 +2,9 @@ package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import java.util.List;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+@Entity
 public final class AgencyEntity extends DataEntity {
     private String name;
     private String website;
@@ -16,42 +18,9 @@ public final class AgencyEntity extends DataEntity {
     @OneToMany
     private List<RentalEntity> rentals;
     private boolean active;
-    public AgencyEntity(
-        String name,
-        String website,
-        List<LocationEntity> locations,
-        List<ContactEntity> contacts,
-        List<VehicleEntity> vehicles,
-        List<RentalEntity> rentals,
-        boolean active
-    ) {
-        super();
-        this.name = name;
-        this.website = website;
-        this.locations = locations;
-        this.contacts = contacts;
-        this.vehicles = vehicles;
-        this.rentals = rentals;
-        this.active = active;
-    }
-    public AgencyEntity(
-        String name,
-        String website,
-        List<LocationEntity> locations,
-        List<ContactEntity> contacts,
-        List<VehicleEntity> vehicles,
-        boolean active
-    ) {
-        super();
-        this.name = name;
-        this.website = website;
-        this.locations = locations;
-        this.contacts = contacts;
-        this.vehicles = vehicles;
-        this.active = active;
-    }
     public AgencyEntity() {
         super();
+        this.active = true;
     }
     public String getName() {
         return name;
