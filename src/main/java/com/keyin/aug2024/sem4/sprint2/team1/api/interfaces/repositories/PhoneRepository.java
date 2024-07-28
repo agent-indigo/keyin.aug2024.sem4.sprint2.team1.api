@@ -8,7 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface PhoneRepository extends CrudRepository<PhoneEntity, Integer> {
+    PhoneEntity findByNumber(String number);
     List<PhoneEntity> findAllByContact(ContactEntity contact);
     List<PhoneEntity> findAllByCategory(PhoneEmailCategory category);
     PhoneEntity findByLocation(LocationEntity location);
+    void deleteByNumber(String number);
+    void deleteAllByContact(ContactEntity contact);
+    void deleteByLocation(LocationEntity location);
 }
