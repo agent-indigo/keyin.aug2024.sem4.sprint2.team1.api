@@ -19,6 +19,5 @@ public interface AddressRepository extends CrudRepository<AddressEntity, UUID> {
     List<AddressEntity> findAllByCategory(AddressCategory category);
     List<AddressEntity> findAllByContact(ContactEntity contact);
     AddressEntity findByLocation(LocationEntity location);
-    void deleteAllByContact(ContactEntity contact);
-    void deleteByLocation(LocationEntity location);
+    List<AddressEntity> findAllByActive(boolean active);
 }

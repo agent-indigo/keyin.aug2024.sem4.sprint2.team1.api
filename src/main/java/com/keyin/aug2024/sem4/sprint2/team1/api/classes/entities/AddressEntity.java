@@ -7,7 +7,9 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "addresses")
 public final class AddressEntity extends DataEntity {
     private int number;
     private String street;

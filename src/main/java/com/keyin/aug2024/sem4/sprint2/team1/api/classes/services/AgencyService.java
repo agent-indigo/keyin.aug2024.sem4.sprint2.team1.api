@@ -93,13 +93,22 @@ public final class AgencyService {
         return repo.findByRental(rental);
     }
     /**
-     * @name    getByActiveStatus
-     * @desc    List all active or inactive agencies
-     * @route   GET /api/agencies/:active
+     * @name    getActive
+     * @desc    List all active agencies
+     * @route   GET /api/agencies/active
      * @access  private
      */
-    public List<AgencyEntity> getByActiveStatus(boolean active) {
-        return repo.findByStatus(active);
+    public List<AgencyEntity> getActive() {
+        return repo.findAllByActive(true);
+    }
+    /**
+     * @name    getInactive
+     * @desc    List all inactive agencies
+     * @route   GET /api/agencies/inactive
+     * @access  private
+     */
+    public List<AgencyEntity> getInactive() {
+        return repo.findAllByActive(false);
     }
     /**
      * @name    add

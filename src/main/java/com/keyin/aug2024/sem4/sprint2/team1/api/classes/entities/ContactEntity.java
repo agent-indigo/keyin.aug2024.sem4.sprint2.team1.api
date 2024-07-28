@@ -5,8 +5,10 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.List;
 @Entity
+@Table(name = "contacts")
 public final class ContactEntity extends DataEntity {
     private String first;
     private String last;

@@ -84,6 +84,26 @@ public final class PhoneController {
         return service.getByLocation(location);
     }
     /**
+     * @name    getActive
+     * @desc    List all active phone numbers
+     * @route   GET /api/phones/active
+     * @access  private
+     */
+    @GetMapping("/api/phones/active")
+    public List<PhoneEntity> getActive() {
+        return service.getActive();
+    }
+    /**
+     * @name    getInactive
+     * @desc    List all inactive phone numbers
+     * @route   GET /api/phones/inactive
+     * @access  private
+     */
+    @GetMapping("/api/phones/inactive")
+    public List<PhoneEntity> getInactive() {
+        return service.getInactive();
+    }
+    /**
      * @name    add
      * @desc    Add a phone number
      * @route   POST /api/phones

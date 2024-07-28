@@ -3,7 +3,9 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.PhoneEmailCategory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "emails")
 public final class EmailEntity extends DataEntity {
     private String address;
     @ManyToOne

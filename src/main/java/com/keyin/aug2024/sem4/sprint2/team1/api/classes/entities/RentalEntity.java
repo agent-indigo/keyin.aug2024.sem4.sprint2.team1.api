@@ -3,7 +3,9 @@ import java.time.ZonedDateTime;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "rentals")
 public final class RentalEntity {
     @ManyToOne
     private VehicleEntity vehicle;
@@ -21,8 +23,10 @@ public final class RentalEntity {
     @Nullable
     @ManyToOne
     private LocationEntity returnedTo;
+    private boolean returned;
     public RentalEntity() {
         super();
+        this.returned = false;
     }
     public VehicleEntity getVehicle() {
         return vehicle;
@@ -77,5 +81,11 @@ public final class RentalEntity {
     }
     public void setReturnedTo(LocationEntity returnedTo) {
         this.returnedTo = returnedTo;
+    }
+    public boolean isReturned() {
+        return returned;
+    }
+    public void setReturned(boolean returned) {
+        this.returned = returned;
     }
 }
