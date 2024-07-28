@@ -16,5 +16,5 @@ public interface AgencyRepository extends CrudRepository<AgencyEntity, UUID> {
     AgencyEntity findByContact(ContactEntity contact);
     AgencyEntity findByVehicle(VehicleEntity vehicle);
     AgencyEntity findByRental(RentalEntity rental);
-    List<AgencyEntity> findByStatus(boolean active);
+    List<AgencyEntity> findAllByActive(boolean active);
 }

@@ -18,5 +18,5 @@ public interface ContactRepository extends CrudRepository<ContactEntity, UUID> {
     List<ContactEntity> findAllByPhone(PhoneEntity phone);
     ContactEntity findByEmail(EmailEntity email);
     ContactEntity findByRental(RentalEntity rental);
-    void deleteByEmail(EmailEntity email);
+    List<ContactEntity> findAllByActive(boolean active);
 }

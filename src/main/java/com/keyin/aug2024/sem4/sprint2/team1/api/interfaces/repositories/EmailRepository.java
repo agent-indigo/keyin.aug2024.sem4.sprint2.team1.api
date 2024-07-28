@@ -11,6 +11,5 @@ public interface EmailRepository extends CrudRepository<EmailEntity, UUID> {
     EmailEntity findByAddress(String address);
     EmailEntity findByContact(ContactEntity contact);
     List<EmailEntity> findAllByCategory(PhoneEmailCategory category);
-    void deleteByAddress(String address);
-    void deleteByContact(ContactEntity contact);
+    List<EmailEntity> findAllByActive(boolean active);
 }

@@ -17,7 +17,5 @@ public interface LocationRepository extends CrudRepository<LocationEntity, UUID>
     LocationEntity findByVehicle(VehicleEntity vehicle);
     List<LocationEntity> findAllByRental(RentalEntity rental);
     List<LocationEntity> findAllByHours(String hours);
-    void deleteAllByAgency(AgencyEntity agency);
-    void deleteByAddress(AddressEntity address);
-    void deleteByPhone(PhoneEntity phone);
+    List<LocationEntity> findAllByActive(boolean active);
 }

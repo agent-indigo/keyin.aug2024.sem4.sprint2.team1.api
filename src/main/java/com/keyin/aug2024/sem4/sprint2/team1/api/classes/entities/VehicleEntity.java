@@ -5,7 +5,9 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "vehicles")
 public final class VehicleEntity extends DataEntity {
     private String manufacturer;
     private String model;
@@ -23,9 +25,11 @@ public final class VehicleEntity extends DataEntity {
     private LocationEntity location;
     @OneToMany
     private List<RentalEntity> rentals;
+    private boolean rented;
     private boolean active;
     public VehicleEntity() {
         super();
+        this.rented = false;
         this.active = true;
     }
     public String getManufacturer() {
@@ -105,6 +109,12 @@ public final class VehicleEntity extends DataEntity {
     }
     public void setRentals(List<RentalEntity> rentals) {
         this.rentals = rentals;
+    }
+    public boolean isRented() {
+        return rented;
+    }
+    public void setRented(boolean rented) {
+        this.rented = rented;
     }
     public boolean isActive() {
         return active;

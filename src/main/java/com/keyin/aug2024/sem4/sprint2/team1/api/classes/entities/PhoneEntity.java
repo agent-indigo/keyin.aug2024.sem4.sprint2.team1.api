@@ -6,7 +6,9 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "phones")
 public final class PhoneEntity extends DataEntity {
     private String number;
     @ManyToMany

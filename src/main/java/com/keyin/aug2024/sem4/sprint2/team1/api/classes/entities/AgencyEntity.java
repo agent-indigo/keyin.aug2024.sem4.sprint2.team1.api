@@ -4,7 +4,9 @@ import java.util.List;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 @Entity
+@Table(name = "agencies")
 public final class AgencyEntity extends DataEntity {
     private String name;
     private String website;

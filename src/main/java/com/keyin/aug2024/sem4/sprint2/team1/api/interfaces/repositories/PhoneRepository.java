@@ -13,7 +13,5 @@ public interface PhoneRepository extends CrudRepository<PhoneEntity, UUID> {
     List<PhoneEntity> findAllByContact(ContactEntity contact);
     List<PhoneEntity> findAllByCategory(PhoneEmailCategory category);
     PhoneEntity findByLocation(LocationEntity location);
-    void deleteByNumber(String number);
-    void deleteAllByContact(ContactEntity contact);
-    void deleteByLocation(LocationEntity location);
+    List<PhoneEntity> findAllByActive(boolean active);
 }

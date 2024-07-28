@@ -80,6 +80,24 @@ public final class PhoneService {
         return repo.findByLocation(location);
     }
     /**
+     * @name    getActive
+     * @desc    List all active phone numbers
+     * @route   GET /api/phones/active
+     * @access  private
+     */
+    public List<PhoneEntity> getActive() {
+        return repo.findAllByActive(true);
+    }
+    /**
+     * @name    getInactive
+     * @desc    List all inactive phone numbers
+     * @route   GET /api/phones/inactive
+     * @access  private
+     */
+    public List<PhoneEntity> getInactive() {
+        return repo.findAllByActive(false);
+    }
+    /**
      * @name    add
      * @desc    Add a phone number
      * @route   POST /api/phones

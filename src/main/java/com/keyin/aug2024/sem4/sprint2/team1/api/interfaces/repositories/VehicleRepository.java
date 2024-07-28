@@ -4,7 +4,9 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.LocationEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.RentalEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.VehicleEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.VehicleCategory;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +25,10 @@ public interface VehicleRepository extends CrudRepository<VehicleEntity, UUID> {
     List<VehicleEntity> findAllByAgency(AgencyEntity agency);
     List<VehicleEntity> findAllByLocation(LocationEntity location);
     VehicleEntity findByRental(RentalEntity rental);
-    void deleteByPlates(String plates);
-    void deleteAllByAgency(AgencyEntity agency);
+    List<VehicleEntity> findAllByRented(boolean rented);
+    List<VehicleEntity> findAllByActive(boolean active);
+    @Query("SELECT * FROM vehicles WHERE stdRate < :max")
+    List<VehicleEntity> findAllWithStdUnder(@Param("max") float max);
+    @Query("SELECT * FROM vehicles WHERE premRate < :max")
+    List<VehicleEntity> findAllWithPremUnder(@Param("max") float max);
 }
