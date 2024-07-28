@@ -1,7 +1,9 @@
 package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
 import java.time.ZonedDateTime;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+@Entity
 public final class RentalEntity {
     @ManyToOne
     private VehicleEntity vehicle;
@@ -19,46 +21,6 @@ public final class RentalEntity {
     @Nullable
     @ManyToOne
     private LocationEntity returnedTo;
-    public RentalEntity(
-        VehicleEntity vehicle,
-        ContactEntity contact,
-        String license,
-        AgencyEntity agency,
-        LocationEntity rentedFrom,
-        ZonedDateTime rentedOn,
-        ZonedDateTime due,
-        ZonedDateTime returnedOn,
-        LocationEntity returnedTo
-    ) {
-        super();
-        this.vehicle = vehicle;
-        this.contact = contact;
-        this.license = license;
-        this.agency = agency;
-        this.rentedFrom = rentedFrom;
-        this.rentedOn = rentedOn;
-        this.due = due;
-        this.returnedOn = returnedOn;
-        this.returnedTo = returnedTo;
-    }
-    public RentalEntity(
-        VehicleEntity vehicle,
-        ContactEntity contact,
-        String license,
-        AgencyEntity agency,
-        LocationEntity rentedFrom,
-        ZonedDateTime rentedOn,
-        ZonedDateTime due
-    ) {
-        super();
-        this.vehicle = vehicle;
-        this.contact = contact;
-        this.license = license;
-        this.agency = agency;
-        this.rentedFrom = rentedFrom;
-        this.rentedOn = rentedOn;
-        this.due = due;
-    }
     public RentalEntity() {
         super();
     }

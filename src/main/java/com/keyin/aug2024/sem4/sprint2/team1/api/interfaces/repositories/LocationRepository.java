@@ -8,8 +8,9 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.VehicleEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.UUID;
 @Repository
-public interface LocationRepository extends CrudRepository<LocationEntity, Integer> {
+public interface LocationRepository extends CrudRepository<LocationEntity, UUID> {
     List<LocationEntity> findAllByAgency(AgencyEntity agency);
     LocationEntity findByAddress(AddressEntity address);
     LocationEntity findByPhone(PhoneEntity phone);

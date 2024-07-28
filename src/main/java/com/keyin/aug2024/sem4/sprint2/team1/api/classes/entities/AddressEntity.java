@@ -4,8 +4,10 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.enums.AddressCategory;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.ProvTerrCode;
 import java.util.List;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+@Entity
 public final class AddressEntity extends DataEntity {
     private int number;
     private String street;
@@ -20,48 +22,10 @@ public final class AddressEntity extends DataEntity {
     @Nullable
     @OneToOne
     private LocationEntity location;
-    public AddressEntity(
-        int number,
-        String street,
-        int unit,
-        String city,
-        ProvTerrCode prov,
-        String postal,
-        AddressCategory category,
-        List<ContactEntity> contacts,
-        LocationEntity location
-    ) {
-        super();
-        this.number = number;
-        this.street = street;
-        this.unit = unit;
-        this.city = city;
-        this.prov = prov;
-        this.postal = postal;
-        this.category = category;
-        this.contacts = contacts;
-        this.location = location;
-    }
-    public AddressEntity(
-        int number,
-        String street,
-        int unit,
-        String city,
-        ProvTerrCode prov,
-        String postal,
-        AddressCategory category
-    ) {
-        super();
-        this.number = number;
-        this.street = street;
-        this.unit = unit;
-        this.city = city;
-        this.prov = prov;
-        this.postal = postal;
-        this.category = category;
-    }
+    private boolean active;
     public AddressEntity() {
         super();
+        this.active = true;
     }
     public int getNumber() {
         return number;
@@ -116,5 +80,11 @@ public final class AddressEntity extends DataEntity {
     }
     public void setLocation(LocationEntity location) {
         this.location = location;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

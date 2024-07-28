@@ -8,8 +8,9 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.enums.ContactRole;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.UUID;
 @Repository
-public interface ContactRepository extends CrudRepository<ContactEntity, Integer> {
+public interface ContactRepository extends CrudRepository<ContactEntity, UUID> {
     List<ContactEntity> findAllByFirst(String first);
     List<ContactEntity> findAllByLast(String last);
     List<ContactEntity> findAllByRole(ContactRole role);

@@ -4,20 +4,22 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.ContactEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.LocationEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.RentalEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.VehicleEntity;
-import com.keyin.aug2024.sem4.sprint2.team1.api.interfaces.Serve;
 import com.keyin.aug2024.sem4.sprint2.team1.api.interfaces.repositories.AgencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-public final class AgencyService implements Serve {
+@Service
+public final class AgencyService {
     @Autowired
     private AgencyRepository repo;
     private AgencyEntity current;
     public AgencyService() {}
     /**
      * @name    list
-     * @desc    List all rental agencies
+     * @desc    List all agencies
      * @route   GET /api/agencies
      * @access  private
      */
@@ -29,16 +31,16 @@ public final class AgencyService implements Serve {
     }
     /**
      * @name    getByPk
-     * @desc    Get a rental agency by its primary key
+     * @desc    Get an agency by its primary key
      * @route   GET /api/agencies/:pk
      * @access  private
      */
-    public AgencyEntity getByPk(int pk) {
+    public AgencyEntity getByPk(UUID pk) {
         return repo.findById(pk).get();
     }
     /**
      * @name    getByName
-     * @desc    Get a rental agency by its name
+     * @desc    Get an agency by its name
      * @route   GET /api/agencies/:name
      * @access  private
      */
@@ -47,7 +49,7 @@ public final class AgencyService implements Serve {
     }
     /**
      * @name    getByWebsite
-     * @desc    Get a rental agency by its website
+     * @desc    Get an agency by its website
      * @route   GET /api/agencies/:website
      * @access  private
      */
@@ -65,7 +67,7 @@ public final class AgencyService implements Serve {
     }
     /**
      * @name    getByContact
-     * @desc    Get the rental agency that employs the given contact
+     * @desc    Get the agency that employs the given contact
      * @route   GET /api/agencies/:contact
      * @access  private
      */
@@ -92,7 +94,7 @@ public final class AgencyService implements Serve {
     }
     /**
      * @name    getByActiveStatus
-     * @desc    List all active or inactive rental agencies
+     * @desc    List all active or inactive agencies
      * @route   GET /api/agencies/:active
      * @access  private
      */
@@ -101,7 +103,7 @@ public final class AgencyService implements Serve {
     }
     /**
      * @name    add
-     * @desc    Add a rental agency
+     * @desc    Add an agency
      * @route   POST /api/agencies
      * @access  private
      */
@@ -110,12 +112,12 @@ public final class AgencyService implements Serve {
     }
     /**
      * @name    rename
-     * @desc    Rename a rental agency
+     * @desc    Rename an agency
      * @route   PATCH /api/agencies/:pk/name
      * @access  private
      */
     public AgencyEntity rename(
-        int pk,
+        UUID pk,
         String name
     ) {
         this.current = repo.findById(pk).get();
@@ -124,12 +126,12 @@ public final class AgencyService implements Serve {
     }
     /**
      * @name    editWebsite
-     * @desc    Edit a rental agency's website address
+     * @desc    Edit an agency's website address
      * @route   PATCH /api/agencies/:pk/website
      * @access  private
      */
     public AgencyEntity editWebsite(
-        int pk,
+        UUID pk,
         String website
     ) {
         this.current = repo.findById(pk).get();
@@ -139,35 +141,24 @@ public final class AgencyService implements Serve {
 
     /**
      * @name    activate
-     * @desc    Activate a rental agency
-     * @route   PATCH /api/agencies/:pk/active
+     * @desc    Activate an agency
+     * @route   GET /api/agencies/:pk/activate
      * @access  private
      */
-    public AgencyEntity activate(int pk) {
+    public AgencyEntity activate(UUID pk) {
         this.current = repo.findById(pk).get();
         current.setActive(true);
         return repo.save(current);
     }
     /**
      * @name    deactivate
-     * @desc    Deactivate a rental agency
-     * @route   PATCH /api/agencies/:pk/active
+     * @desc    Deactivate an agency
+     * @route   GET /api/agencies/:pk/deactivate
      * @access  private
      */
-    public AgencyEntity deactivate(int pk) {
+    public AgencyEntity deactivate(UUID pk) {
         this.current = repo.findById(pk).get();
         current.setActive(false);
         return repo.save(current);
-    }
-    /**
-     * @name    delete
-     * @desc    Delete a rental agency
-     * @route   DELETE /api/agencies/:pk
-     * @access  private
-     */
-    @Override
-    public String delete(int pk) {
-        repo.deleteById(pk);
-        return "Rental agency deleted.";
     }
 }

@@ -1,24 +1,18 @@
 package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.PhoneEmailCategory;
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+@Entity
 public final class EmailEntity extends DataEntity {
     private String address;
     @ManyToOne
     private ContactEntity contact;
     private PhoneEmailCategory category;
-    public EmailEntity(
-        String address,
-        ContactEntity contact,
-        PhoneEmailCategory category
-    ) {
-        super();
-        this.address = address;
-        this.contact = contact;
-        this.category = category;
-    }
+    private boolean active;
     public EmailEntity() {
         super();
+        this.active = true;
     }
     public String getAddress() {
         return address;
@@ -37,5 +31,11 @@ public final class EmailEntity extends DataEntity {
     }
     public void setCategory(PhoneEmailCategory category) {
         this.category = category;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
