@@ -9,7 +9,7 @@ import java.util.UUID;
 @Repository
 public interface EmailRepository extends CrudRepository<EmailEntity, UUID> {
     EmailEntity findByAddress(String address);
-    EmailEntity findByContact(ContactEntity contact);
+    List<EmailEntity> findByContact(ContactEntity contact);
     List<EmailEntity> findAllByCategory(PhoneEmailCategory category);
     List<EmailEntity> findAllByActive(boolean active);
 }
