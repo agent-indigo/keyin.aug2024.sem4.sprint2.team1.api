@@ -23,6 +23,20 @@ public final class LocationEntity extends DataEntity {
     @ManyToMany
     private List<RentalEntity> rentals;
     private String hours;
+    public LocationEntity(
+        AgencyEntity agency,
+        AddressEntity address,
+        PhoneEntity phone,
+        List<VehicleEntity> vehicles,
+        String hours
+    ) {
+        super();
+        this.agency = agency;
+        this.address = address;
+        this.phone = phone;
+        this.vehicles = vehicles;
+        this.hours = hours;
+    }
     public LocationEntity() {
         super();
     }

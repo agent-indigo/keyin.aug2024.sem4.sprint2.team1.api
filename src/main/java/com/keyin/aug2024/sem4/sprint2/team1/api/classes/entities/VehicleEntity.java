@@ -2,6 +2,7 @@ package com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.abstracts.DataEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.enums.VehicleCategory;
 import java.util.List;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -15,17 +16,74 @@ public final class VehicleEntity extends DataEntity {
     private int capacity;
     private VehicleCategory category;
     private float stdRate;
+    @Nullable
     private float premRate;
     private float stdIns;
+    @Nullable
     private float premIns;
     private String plates;
     @OneToOne
     private AgencyEntity agency;
     @OneToOne
     private LocationEntity location;
+    @Nullable
     @OneToMany
     private List<RentalEntity> rentals;
     private boolean rented;
+    public VehicleEntity(
+        String manufacturer,
+        String model,
+        int year,
+        int capacity,
+        VehicleCategory category,
+        float stdRate,
+        float premRate,
+        float stdIns,
+        float premIns,
+        String plates,
+        AgencyEntity agency,
+        LocationEntity location
+    ) {
+        super();
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.year = year;
+        this.capacity = capacity;
+        this.category = category;
+        this.stdRate = stdRate;
+        this.premRate = premRate;
+        this.stdIns = stdIns;
+        this.premIns = premIns;
+        this.plates = plates;
+        this.agency = agency;
+        this.location = location;
+        this.rented = false;
+    }
+    public VehicleEntity(
+        String manufacturer,
+        String model,
+        int year,
+        int capacity,
+        VehicleCategory category,
+        float stdRate,
+        float stdIns,
+        String plates,
+        AgencyEntity agency,
+        LocationEntity location
+    ) {
+        super();
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.year = year;
+        this.capacity = capacity;
+        this.category = category;
+        this.stdRate = stdRate;
+        this.stdIns = stdIns;
+        this.plates = plates;
+        this.agency = agency;
+        this.location = location;
+        this.rented = false;
+    }
     public VehicleEntity() {
         super();
         this.rented = false;

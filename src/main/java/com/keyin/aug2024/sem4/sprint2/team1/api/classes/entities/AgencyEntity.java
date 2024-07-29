@@ -19,6 +19,20 @@ public final class AgencyEntity extends DataEntity {
     @Nullable
     @OneToMany
     private List<RentalEntity> rentals;
+    public AgencyEntity(
+        String name,
+        String website,
+        List<LocationEntity> locations,
+        List<ContactEntity> contacts,
+        List<VehicleEntity> vehicles
+    ) {
+        super();
+        this.name = name;
+        this.website = website;
+        this.locations = locations;
+        this.contacts = contacts;
+        this.vehicles = vehicles;
+    }
     public AgencyEntity() {
         super();
     }
