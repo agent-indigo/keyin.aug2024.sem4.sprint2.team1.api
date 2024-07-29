@@ -11,12 +11,33 @@ import jakarta.persistence.Table;
 @Table(name = "phones")
 public final class PhoneEntity extends DataEntity {
     private String number;
+    @Nullable
     @ManyToMany
     private List<ContactEntity> contacts;
     @Nullable
     @OneToOne
     private LocationEntity location;
     private PhoneEmailCategory category;
+    public PhoneEntity(
+        String number,
+        List<ContactEntity> contacts,
+        PhoneEmailCategory category
+    ) {
+        super();
+        this.number = number;
+        this.contacts = contacts;
+        this.category = category;
+    }
+    public PhoneEntity(
+        String number,
+        LocationEntity location,
+        PhoneEmailCategory category
+    ) {
+        super();
+        this.number = number;
+        this.category = category;
+        this.location = location;
+    }
     public PhoneEntity() {
         super();
     }

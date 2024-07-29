@@ -22,6 +22,22 @@ public final class ContactEntity extends DataEntity {
     @Nullable
     @OneToMany
     private List<RentalEntity> rentals;
+    public ContactEntity(
+        String first,
+        String last,
+        ContactRole role,
+        List<AddressEntity> addresses,
+        List<PhoneEntity> phones,
+        List<EmailEntity> emails
+    ) {
+        super();
+        this.first = first;
+        this.last = last;
+        this.role = role;
+        this.addresses = addresses;
+        this.phones = phones;
+        this.emails = emails;
+    }
     public ContactEntity() {
         super();
     }

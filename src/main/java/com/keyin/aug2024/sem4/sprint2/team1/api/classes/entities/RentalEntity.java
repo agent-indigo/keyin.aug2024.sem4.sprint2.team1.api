@@ -24,6 +24,24 @@ public final class RentalEntity extends DataEntity {
     @Nullable
     @ManyToOne
     private LocationEntity returnedTo;
+    public RentalEntity(
+        VehicleEntity vehicle,
+        ContactEntity contact,
+        String license,
+        AgencyEntity agency,
+        LocationEntity rentedFrom,
+        ZonedDateTime rentedOn,
+        ZonedDateTime due
+    ) {
+        super();
+        this.vehicle = vehicle;
+        this.contact = contact;
+        this.license = license;
+        this.agency = agency;
+        this.rentedFrom = rentedFrom;
+        this.rentedOn = rentedOn;
+        this.due = due;
+    }
     public RentalEntity() {
         super();
     }

@@ -11,6 +11,16 @@ public final class EmailEntity extends DataEntity {
     @ManyToOne
     private ContactEntity contact;
     private PhoneEmailCategory category;
+    public EmailEntity(
+        String address,
+        ContactEntity contact,
+        PhoneEmailCategory category
+    ) {
+        super();
+        this.address = address;
+        this.contact = contact;
+        this.category = category;
+    }
     public EmailEntity() {
         super();
     }

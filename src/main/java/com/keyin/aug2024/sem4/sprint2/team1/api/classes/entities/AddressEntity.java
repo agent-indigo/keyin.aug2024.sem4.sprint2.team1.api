@@ -24,6 +24,46 @@ public final class AddressEntity extends DataEntity {
     @Nullable
     @OneToOne
     private LocationEntity location;
+    public AddressEntity(
+        int number,
+        String street,
+        int unit,
+        String city,
+        ProvTerrCode prov,
+        String postal,
+        AddressCategory category,
+        List<ContactEntity> contacts
+    ) {
+        super();
+        this.number = number;
+        this.street = street;
+        this.unit = unit;
+        this.city = city;
+        this.prov = prov;
+        this.postal = postal;
+        this.category = category;
+        this.contacts = contacts;
+    }
+    public AddressEntity(
+        int number,
+        String street,
+        int unit,
+        String city,
+        ProvTerrCode prov,
+        String postal,
+        AddressCategory category,
+        LocationEntity location
+    ) {
+        super();
+        this.number = number;
+        this.street = street;
+        this.unit = unit;
+        this.city = city;
+        this.prov = prov;
+        this.postal = postal;
+        this.category = category;
+        this.location = location;
+    }
     public AddressEntity() {
         super();
     }
