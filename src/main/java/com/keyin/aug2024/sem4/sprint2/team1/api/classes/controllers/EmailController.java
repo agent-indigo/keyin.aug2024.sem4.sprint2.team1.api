@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -48,6 +49,10 @@ public final class EmailController {
     @GetMapping("/api/emails/inactive")
     public List<EmailEntity> getInactive() {
         return service.getInactive();
+    }
+    @PostMapping("/api/emails")
+    public EmailEntity add(@RequestBody EmailEntity email) {
+        return service.add(email);
     }
     @PatchMapping("/api/emails/{pk}/address")
     public EmailEntity editAddress(

@@ -94,7 +94,7 @@ public final class AgencyService {
     }
     /**
      * @name    getActive
-     * @desc    List all active agencies
+     * @desc    Get all active agencies
      * @route   GET /api/agencies/active
      * @access  private
      */
@@ -103,7 +103,7 @@ public final class AgencyService {
     }
     /**
      * @name    getInactive
-     * @desc    List all inactive agencies
+     * @desc    Get all inactive agencies
      * @route   GET /api/agencies/inactive
      * @access  private
      */
@@ -147,7 +147,6 @@ public final class AgencyService {
         current.setWebsite(website);
         return repo.save(current);
     }
-
     /**
      * @name    activate
      * @desc    Activate an agency

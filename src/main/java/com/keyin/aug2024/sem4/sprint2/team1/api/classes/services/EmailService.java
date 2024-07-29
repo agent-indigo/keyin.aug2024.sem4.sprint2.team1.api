@@ -83,6 +83,15 @@ public final class EmailService {
         return repo.findAllByActive(false);
     }
     /**
+     * @name    add
+     * @desc    Add an email address
+     * @route   POST /api/emails
+     * @access  private
+     */
+    public EmailEntity add(EmailEntity email) {
+        return repo.save(email);
+    }
+    /**
      * @name    editAddress
      * @desc    Edit an email address
      * @route   PATCH /api/emails/{pk}/address
