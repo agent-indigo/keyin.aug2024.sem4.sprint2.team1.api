@@ -5,6 +5,8 @@ import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.ContactEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.entities.LocationEntity;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.services.AddressService;
 import com.keyin.aug2024.sem4.sprint2.team1.api.classes.services.PhoneService;
+import com.keyin.aug2024.sem4.sprint2.team1.api.enums.AddressCategory;
+import com.keyin.aug2024.sem4.sprint2.team1.api.enums.ProvTerrCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import org.springframework.web.bind.annotation.*;
@@ -47,15 +49,69 @@ public final class AddressController {
         return service.add(newAddress);
     }
 
-    @PutMapping("/api/addresses/{pk}")
-    public AddressEntity edit(@PathVariable UUID pk, @RequestBody AddressEntity updatedAddress) {
-        return service.edit(pk, updatedAddress);
+    @PatchMapping("/api/address/{pk}/number")
+    public AddressEntity newNumber(
+            @PathVariable UUID pk,
+            @RequestBody int number
+    ) {
+        return service.newNumber(pk, number);
     }
 
-    @DeleteMapping("/api/address")
-    public String delete(@PathVariable UUID pk) {
-        return service.delete(pk);
+    @PatchMapping("/api/address/{pk}/street")
+    public AddressEntity renameStreet(
+            @PathVariable UUID pk,
+            @RequestBody String street
+    ) {
+        return service.renameStreet(pk, street);
     }
 
+    @PatchMapping("/api/address/{pk}/unit")
+    public AddressEntity newUnit(
+            @PathVariable UUID pk,
+            @RequestBody int unit
+    ) {
+        return service.newUnit(pk, unit);
+    }
+
+    @PatchMapping("/api/address/{pk}/city")
+    public AddressEntity renameCity(
+            @PathVariable UUID pk,
+            @RequestBody String city
+    ) {
+        return service.renameCity(pk, city);
+    }
+
+    @PatchMapping("/api/address/{pk}/prov")
+    public AddressEntity newProv(
+            @PathVariable UUID pk,
+            @RequestBody ProvTerrCode prov
+    ) {
+        return service.newProv(pk, prov);
+    }
+
+    @PatchMapping("/api/address/{pk}/postal")
+    public AddressEntity newPostal(
+            @PathVariable UUID pk,
+            @RequestBody String postal
+    ) {
+        return service.newPostal(pk, postal);
+    }
+
+    @PatchMapping("/api/address/{pk}/category")
+    public AddressEntity newCategory(
+            @PathVariable UUID pk,
+            @RequestBody AddressCategory category
+    ) {
+        return service.newCategory(pk, category);
+    }
+
+    @GetMapping("/api/address/{pk}/activate")
+    public AddressEntity activate(@PathVariable UUID pk) {
+        return service.activate(pk);
+    }
+    @GetMapping("/api/address/{pk}/deactivate")
+    public AddressEntity deactivate(@PathVariable UUID pk) {
+        return service.deactivate(pk);
+    }
 
 }
