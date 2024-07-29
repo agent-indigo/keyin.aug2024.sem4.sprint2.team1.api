@@ -18,12 +18,12 @@ public final class AgencyService {
     private AgencyEntity current;
     public AgencyService() {}
     /**
-     * @name    list
-     * @desc    List all agencies
+     * @name    getAll
+     * @desc    Get all agencies
      * @route   GET /api/agencies
      * @access  private
      */
-    public List<AgencyEntity> list() {
+    public List<AgencyEntity> getAll() {
         return StreamSupport.stream(
             repo.findAll().spliterator(),
             false
@@ -32,7 +32,7 @@ public final class AgencyService {
     /**
      * @name    getByPk
      * @desc    Get an agency by its primary key
-     * @route   GET /api/agencies/:pk
+     * @route   GET /api/agencies/{pk}
      * @access  private
      */
     public AgencyEntity getByPk(UUID pk) {
@@ -41,7 +41,7 @@ public final class AgencyService {
     /**
      * @name    getByName
      * @desc    Get an agency by its name
-     * @route   GET /api/agencies/:name
+     * @route   GET /api/agencies/{name}
      * @access  private
      */
     public AgencyEntity getByName(String name) {
@@ -50,7 +50,7 @@ public final class AgencyService {
     /**
      * @name    getByWebsite
      * @desc    Get an agency by its website
-     * @route   GET /api/agencies/:website
+     * @route   GET /api/agencies/{website}
      * @access  private
      */
     public AgencyEntity getByWebsite(String website) {
@@ -59,7 +59,7 @@ public final class AgencyService {
     /**
      * @name    getByLocation
      * @desc    Get the agency that owns the given location
-     * @route   GET /api/agencies/:location
+     * @route   GET /api/agencies/{location}
      * @access  private
      */
     public AgencyEntity getByLocation(LocationEntity location) {
@@ -68,7 +68,7 @@ public final class AgencyService {
     /**
      * @name    getByContact
      * @desc    Get the agency that employs the given contact
-     * @route   GET /api/agencies/:contact
+     * @route   GET /api/agencies/{contact}
      * @access  private
      */
     public AgencyEntity getByContact(ContactEntity contact) {
@@ -77,7 +77,7 @@ public final class AgencyService {
     /**
      * @name    getByVehicle
      * @desc    Get the agency that owns the given vehicle
-     * @route   GET /api/agencies/:vehicle
+     * @route   GET /api/agencies/{vehicle}
      * @access  private
      */
     public AgencyEntity getByVehicle(VehicleEntity vehicle) {
@@ -86,7 +86,7 @@ public final class AgencyService {
     /**
      * @name    getByRental
      * @desc    Get the agency that the given vehicle was rented from
-     * @route   GET /api/agencies/:rental
+     * @route   GET /api/agencies/{rental}
      * @access  private
      */
     public AgencyEntity getByRental(RentalEntity rental) {
@@ -122,7 +122,7 @@ public final class AgencyService {
     /**
      * @name    rename
      * @desc    Rename an agency
-     * @route   PATCH /api/agencies/:pk/name
+     * @route   PATCH /api/agencies/{pk}/name
      * @access  private
      */
     public AgencyEntity rename(
@@ -136,7 +136,7 @@ public final class AgencyService {
     /**
      * @name    editWebsite
      * @desc    Edit an agency's website address
-     * @route   PATCH /api/agencies/:pk/website
+     * @route   PATCH /api/agencies/{pk}/website
      * @access  private
      */
     public AgencyEntity editWebsite(
@@ -151,7 +151,7 @@ public final class AgencyService {
     /**
      * @name    activate
      * @desc    Activate an agency
-     * @route   GET /api/agencies/:pk/activate
+     * @route   GET /api/agencies/{pk}/activate
      * @access  private
      */
     public AgencyEntity activate(UUID pk) {
@@ -162,7 +162,7 @@ public final class AgencyService {
     /**
      * @name    deactivate
      * @desc    Deactivate an agency
-     * @route   GET /api/agencies/:pk/deactivate
+     * @route   GET /api/agencies/{pk}/deactivate
      * @access  private
      */
     public AgencyEntity deactivate(UUID pk) {

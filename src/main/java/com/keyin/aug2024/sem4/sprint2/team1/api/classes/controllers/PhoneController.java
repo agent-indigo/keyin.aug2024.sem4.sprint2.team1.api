@@ -23,102 +23,42 @@ public final class PhoneController {
     public PhoneController() {
         this.service = new PhoneService();
     }
-    /**
-     * @name    list
-     * @desc    List all phone numbers
-     * @route   GET /api/phones
-     * @access  private
-     */
     @GetMapping("/api/phones")
     public List<PhoneEntity> list() {
-        return service.list();
+        return service.getAll();
     }
-    /**
-     * @name    getByPk
-     * @desc    Get a phone number by its primary key
-     * @route   GET /api/phones/:pk
-     * @access  private
-     */
     @GetMapping("/api/phones/{pk}")
     public PhoneEntity getByPk(@PathVariable UUID pk) {
         return service.getByPk(pk);
     }
-    /**
-     * @name    getByNumber
-     * @desc    Get a phone number by the recorded number
-     * @route   GET /api/phones/:number
-     * @access  private
-     */
     @GetMapping("/api/phones/{number}")
     public PhoneEntity getByNumber(@PathVariable String number) {
         return service.getByNumber(number);
     }
-    /**
-     * @name    getByContact
-     * @desc    List all phone numbers associated with a contact
-     * @route   GET /api/phones/:contact
-     * @access  private
-     */
     @GetMapping("/api/phones/{contact}")
     public List<PhoneEntity> getByContact(@PathVariable ContactEntity contact) {
         return service.getByContact(contact);
     }
-    /**
-     * @name    getByCategory
-     * @desc    List all personal or work phone numbers
-     * @route   GET /api/phones/:category
-     * @access  private
-     */
     @GetMapping("/api/phones/{category}")
     public List<PhoneEntity> getByCategory(@PathVariable PhoneEmailCategory category) {
         return service.getByCategory(category);
     }
-    /**
-     * @name    getByLocation
-     * @desc    Get the phone number of the given agency location
-     * @route   GET /api/phones/:location
-     * @access  private
-     */
     @GetMapping("/api/phones/{location}")
     public PhoneEntity getByLocation(@PathVariable LocationEntity location) {
         return service.getByLocation(location);
     }
-    /**
-     * @name    getActive
-     * @desc    List all active phone numbers
-     * @route   GET /api/phones/active
-     * @access  private
-     */
     @GetMapping("/api/phones/active")
     public List<PhoneEntity> getActive() {
         return service.getActive();
     }
-    /**
-     * @name    getInactive
-     * @desc    List all inactive phone numbers
-     * @route   GET /api/phones/inactive
-     * @access  private
-     */
     @GetMapping("/api/phones/inactive")
     public List<PhoneEntity> getInactive() {
         return service.getInactive();
     }
-    /**
-     * @name    add
-     * @desc    Add a phone number
-     * @route   POST /api/phones
-     * @access  private
-     */
     @PostMapping("/api/phones")
     public PhoneEntity add(@RequestBody PhoneEntity number) {
         return service.add(number);
     }
-    /**
-     * @name    editNumber
-     * @desc    Edit a phone number
-     * @route   PATCH /api/phones/:pk/number
-     * @access  private
-     */
     @PatchMapping("/api/phones/{pk}/number")
     public PhoneEntity editNumber(
         @PathVariable UUID pk,
@@ -126,12 +66,6 @@ public final class PhoneController {
     ) {
         return service.editNumber(pk, number);
     }
-    /**
-     * @name    switchCategory
-     * @desc    Switch a phone number's category to personal or work
-     * @route   PATCH /api/phones/:pk/category
-     * @access  private
-     */
     @PatchMapping("/api/phones/{pk}/category")
     public PhoneEntity switchCategory(
         @PathVariable UUID pk,
@@ -139,12 +73,6 @@ public final class PhoneController {
     ) {
         return service.switchCategory(pk, category);
     }
-    /**
-     * @name    addLocation
-     * @desc    Add an agency location to a phone number
-     * @route   POST /api/phones/:pk
-     * @access  private
-     */
     @PostMapping("/api/phones/:pk")
     public PhoneEntity addLocation(
         @PathVariable UUID pk,
@@ -152,22 +80,10 @@ public final class PhoneController {
     ) {
         return service.addLocation(pk, location);
     }
-    /**
-     * @name    deleteLocation
-     * @desc    Delete an agency location from a phone number
-     * @route   DELETE /api/phones/:pk/location
-     * @access  private
-     */
     @DeleteMapping("/api/phones/{pk}/location")
     public PhoneEntity deleteLocation(@PathVariable UUID pk) {
         return service.deleteLocation(pk);
     }
-    /**
-     * @name    addContact
-     * @desc    Add a contact to a phone number
-     * @route   POST /api/phones/:pk/contacts
-     * @access  private
-     */
     @PostMapping("/api/phones/{pk}/contacts")
     public PhoneEntity addContact(
         @PathVariable UUID pk,
@@ -175,12 +91,6 @@ public final class PhoneController {
     ) {
         return service.addContact(pk, contact);
     }
-    /**
-     * @name    addContacts
-     * @desc    Add contacts to a phone number
-     * @route   POST /api/phones/:pk
-     * @access  private
-     */
     @PostMapping("/api/phones/{pk}")
     public PhoneEntity addContacts(
         @PathVariable UUID pk,
@@ -188,12 +98,6 @@ public final class PhoneController {
     ) {
         return service.addContacts(pk, contacts);
     }
-    /**
-     * @name    replaceContact
-     * @desc    Replace a contact associated with a phone number
-     * @route   PATCH /api/phones/:pk/contacts/:index
-     * @access  private
-     */
     @PatchMapping("/api/phones/{pk}/contacts/{index}")
     public PhoneEntity replaceContact(
         @PathVariable UUID pk,
@@ -202,12 +106,6 @@ public final class PhoneController {
     ) {
         return service.replaceContact(pk, index, contact);
     }
-    /**
-     * @name    deleteContact
-     * @desc    Delete a contact from a phone number
-     * @route   DELETE /api/phones/:pk/contacts/:index
-     * @access  private
-     */
     @DeleteMapping("/api/phones/{pk}/contacts/{index}")
     public PhoneEntity deleteContact(
         @PathVariable UUID pk,
@@ -215,32 +113,14 @@ public final class PhoneController {
     ) {
         return service.deleteContact(pk, index);
     }
-    /**
-     * @name    deleteContacts
-     * @desc    Delete all contacts from a phone number
-     * @route   DELETE /api/phones/:pk/contacts
-     * @access  private
-     */
     @DeleteMapping("/api/phones/{pk}/contacts")
     public PhoneEntity deleteContacts(@PathVariable UUID pk) {
         return service.deleteContacts(pk);
     }
-    /**
-     * @name    activate
-     * @desc    Activate a phone number
-     * @route   PATCH /api/phones/:pk/activate
-     * @access  private
-     */
     @GetMapping("/api/phones/{pk}/activate")
     public PhoneEntity activate(@PathVariable UUID pk) {
         return service.activate(pk);
     }
-    /**
-     * @name    deactivate
-     * @desc    Deactivate a phone number
-     * @route   PATCH /api/phones/:pk/deactivate
-     * @access  private
-     */
     @GetMapping("/api/phone/{pk}/deactivate")
     public PhoneEntity deactivate(@PathVariable UUID pk) {
         return service.deactivate(pk);
