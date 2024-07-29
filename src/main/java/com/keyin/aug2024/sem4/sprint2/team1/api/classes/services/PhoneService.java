@@ -197,6 +197,20 @@ public final class PhoneService {
         return repo.save(current);
     }
     /**
+     * @name    replaceContacts
+     * @desc    Replace all contacts associated with a phone number
+     * @route   PATCH /api/phones/{pk}/contacts
+     * @access  private
+     */
+    public PhoneEntity replaceContacts(
+        UUID pk,
+        List<ContactEntity> contacts
+    ) {
+        this.current = repo.findById(pk).get();
+        current.setContacts(contacts);
+        return repo.save(current);
+    }
+    /**
      * @name    deleteContact
      * @desc    Delete a contact from a phone number
      * @route   DELETE /api/phones/{pk}/contacts/{index}

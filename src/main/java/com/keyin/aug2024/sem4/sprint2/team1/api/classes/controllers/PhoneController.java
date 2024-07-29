@@ -106,6 +106,13 @@ public final class PhoneController {
     ) {
         return service.replaceContact(pk, index, contact);
     }
+    @PatchMapping("/api/phones/{pk}/contacts")
+    public PhoneEntity replaceContacts(
+        UUID pk,
+        List<ContactEntity> contacts
+    ) {
+        return service.replaceContacts(pk, contacts);
+    }
     @DeleteMapping("/api/phones/{pk}/contacts/{index}")
     public PhoneEntity deleteContact(
         @PathVariable UUID pk,
