@@ -53,10 +53,7 @@ public final class PhoneService {
      * @access  private
      */
     public List<PhoneEntity> getByContact(ContactEntity contact) {
-        return StreamSupport.stream(
-            repo.findAllByContact(contact).spliterator(),
-            false
-        ).collect(Collectors.toList());
+        return repo.findAllByContact(contact);
     }
     /**
      * @name    getByCategory
@@ -65,10 +62,7 @@ public final class PhoneService {
      * @access  private
      */
     public List<PhoneEntity> getByCategory(PhoneEmailCategory category) {
-        return StreamSupport.stream(
-            repo.findAllByCategory(category).spliterator(),
-            false
-        ).collect(Collectors.toList());
+        return repo.findAllByCategory(category);
     }
     /**
      * @name    getByLocation
