@@ -48,7 +48,7 @@ public final class PhoneService {
     }
     /**
      * @name    getByContact
-     * @desc    List all phone numbers associated with a contact
+     * @desc    Get all phone numbers associated with a contact
      * @route   GET /api/phones/{contact}
      * @access  private
      */
@@ -57,7 +57,7 @@ public final class PhoneService {
     }
     /**
      * @name    getByCategory
-     * @desc    List all personal or work phone numbers
+     * @desc    Get all personal or work phone numbers
      * @route   GET /api/phones/{category}
      * @access  private
      */
@@ -75,7 +75,7 @@ public final class PhoneService {
     }
     /**
      * @name    getActive
-     * @desc    List all active phone numbers
+     * @desc    Get all active phone numbers
      * @route   GET /api/phones/active
      * @access  private
      */
@@ -84,7 +84,7 @@ public final class PhoneService {
     }
     /**
      * @name    getInactive
-     * @desc    List all inactive phone numbers
+     * @desc    Get all inactive phone numbers
      * @route   GET /api/phones/inactive
      * @access  private
      */

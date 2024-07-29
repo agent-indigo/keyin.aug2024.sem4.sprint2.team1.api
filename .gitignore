@@ -1,7 +1,7 @@
 .idea/
 .vscode/
-src/main/resources/
 target/
 .DS_Store
+application.properties
 [Dd]esktop.ini
 thumbs.db

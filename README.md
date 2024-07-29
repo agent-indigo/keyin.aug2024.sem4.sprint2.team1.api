@@ -1,4 +1,4 @@
-# Application name goes here
+# BARK Vehicle Rental Agency Aggregator
 
 ## Final Assignment
 
