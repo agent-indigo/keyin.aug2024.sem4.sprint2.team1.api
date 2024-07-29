@@ -17,12 +17,12 @@ public final class PhoneService {
     private PhoneEntity current;
     public PhoneService() {}
     /**
-     * @name    list
-     * @desc    List all phone numbers
+     * @name    getAll
+     * @desc    Get all phone numbers
      * @route   GET /api/phones
      * @access  private
      */
-    public List<PhoneEntity> list() {
+    public List<PhoneEntity> getAll() {
         return StreamSupport.stream(
             repo.findAll().spliterator(),
             false
@@ -31,7 +31,7 @@ public final class PhoneService {
     /**
      * @name    getByPk
      * @desc    Get a phone number by its primary key
-     * @route   GET /api/phones/:pk
+     * @route   GET /api/phones/{pk}
      * @access  private
      */
     public PhoneEntity getByPk(UUID pk) {
@@ -40,7 +40,7 @@ public final class PhoneService {
     /**
      * @name    getByNumber
      * @desc    Get a phone number by the recorded number
-     * @route   GET /api/phones/:number
+     * @route   GET /api/phones/{number}
      * @access  private
      */
     public PhoneEntity getByNumber(String number) {
@@ -49,7 +49,7 @@ public final class PhoneService {
     /**
      * @name    getByContact
      * @desc    List all phone numbers associated with a contact
-     * @route   GET /api/phones/:contact
+     * @route   GET /api/phones/{contact}
      * @access  private
      */
     public List<PhoneEntity> getByContact(ContactEntity contact) {
@@ -58,7 +58,7 @@ public final class PhoneService {
     /**
      * @name    getByCategory
      * @desc    List all personal or work phone numbers
-     * @route   GET /api/phones/:category
+     * @route   GET /api/phones/{category}
      * @access  private
      */
     public List<PhoneEntity> getByCategory(PhoneEmailCategory category) {
@@ -67,7 +67,7 @@ public final class PhoneService {
     /**
      * @name    getByLocation
      * @desc    Get the phone number of the given agency location
-     * @route   GET /api/phones/:location
+     * @route   GET /api/phones/{location}
      * @access  private
      */
     public PhoneEntity getByLocation(LocationEntity location) {
@@ -103,7 +103,7 @@ public final class PhoneService {
     /**
      * @name    editNumber
      * @desc    Edit a phone number
-     * @route   PATCH /api/phones/:pk/number
+     * @route   PATCH /api/phones/{pk}/number
      * @access  private
      */
     public PhoneEntity editNumber(
@@ -117,7 +117,7 @@ public final class PhoneService {
     /**
      * @name    switchCategory
      * @desc    Switch a phone number's category to personal or work
-     * @route   PATCH /api/phones/:pk/category
+     * @route   PATCH /api/phones/{pk}/category
      * @access  private
      */
     public PhoneEntity switchCategory(
@@ -131,7 +131,7 @@ public final class PhoneService {
     /**
      * @name    addLocation
      * @desc    Add an agency location to a phone number
-     * @route   POST /api/phones/:pk
+     * @route   POST /api/phones/{pk}
      * @access  private
      */
     public PhoneEntity addLocation(
@@ -145,7 +145,7 @@ public final class PhoneService {
     /**
      * @name    deleteLocation
      * @desc    Delete an agency location from a phone number
-     * @route   DELETE /api/phones/:pk/location
+     * @route   DELETE /api/phones/{pk}/location
      * @access  private
      */
     public PhoneEntity deleteLocation(UUID pk) {
@@ -156,7 +156,7 @@ public final class PhoneService {
     /**
      * @name    addContact
      * @desc    Add a contact to a phone number
-     * @route   POST /api/phones/:pk/contacts
+     * @route   POST /api/phones/{pk}/contacts
      * @access  private
      */
     public PhoneEntity addContact(
@@ -170,7 +170,7 @@ public final class PhoneService {
     /**
      * @name    addContacts
      * @desc    Add contacts to a phone number
-     * @route   POST /api/phones/:pk
+     * @route   POST /api/phones/{pk}
      * @access  private
      */
     public PhoneEntity addContacts(
@@ -184,7 +184,7 @@ public final class PhoneService {
     /**
      * @name    replaceContact
      * @desc    Replace a contact associated with a phone number
-     * @route   PATCH /api/phones/:pk/contacts/:index
+     * @route   PATCH /api/phones/{pk}/contacts/{index}
      * @access  private
      */
     public PhoneEntity replaceContact(
@@ -199,7 +199,7 @@ public final class PhoneService {
     /**
      * @name    deleteContact
      * @desc    Delete a contact from a phone number
-     * @route   DELETE /api/phones/:pk/contacts/:index
+     * @route   DELETE /api/phones/{pk}/contacts/{index}
      * @access  private
      */
     public PhoneEntity deleteContact(
@@ -213,7 +213,7 @@ public final class PhoneService {
     /**
      * @name    deleteContacts
      * @desc    Delete all contacts from a phone number
-     * @route   DELETE /api/phones/:pk/contacts
+     * @route   DELETE /api/phones/{pk}/contacts
      * @access  private
      */
     public PhoneEntity deleteContacts(UUID pk) {
@@ -224,7 +224,7 @@ public final class PhoneService {
     /**
      * @name    activate
      * @desc    Activate a phone number
-     * @route   GET /api/phones/:pk/activate
+     * @route   GET /api/phones/{pk}/activate
      * @access  private
      */
     public PhoneEntity activate(UUID pk) {
@@ -235,7 +235,7 @@ public final class PhoneService {
     /**
      * @name    deactivate
      * @desc    Deactivate a phone number
-     * @route   GET /api/phones/:pk/deactivate
+     * @route   GET /api/phones/{pk}/deactivate
      * @access  private
      */
     public PhoneEntity deactivate(UUID pk) {
