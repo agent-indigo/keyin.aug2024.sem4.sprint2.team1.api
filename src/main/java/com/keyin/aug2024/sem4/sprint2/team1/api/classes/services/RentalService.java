@@ -97,12 +97,21 @@ public final class RentalService {
         return rentalRepository.findAllByRentedOn(date);
     }
     /**
-     * @name    getDue
-     * @desc    Get all rentals due to be returned on the given date
-     * @route   GET /api/rentals/due
+     * @name    getDueToday
+     * @desc    Get all rentals due today
+     * @route   GET /api/rentals/dueToday
      * @access  private
      */
-    public List<RentalEntity> getDue(ZonedDateTime date) {
+    public List<RentalEntity> getDueToday() {
+        return rentalRepository.findAllByDue(ZonedDateTime.now());
+    }
+    /**
+     * @name    getDueOn
+     * @desc    Get all rentals due to be returned on the given date
+     * @route   GET /api/rentals/due/{date}
+     * @access  private
+     */
+    public List<RentalEntity> getDueOn(ZonedDateTime date) {
         return rentalRepository.findAllByDue(date);
     }
     /**
@@ -185,7 +194,7 @@ public final class RentalService {
     /**
      * @name    returnVehicle
      * @desc    Return a rented vehicle
-     * @route   GET /api/rentals/{pk}/return
+     * @route   PATCH /api/rentals/{pk}/return
      * @access  private
      */
     public RentalEntity returnVehicle(
