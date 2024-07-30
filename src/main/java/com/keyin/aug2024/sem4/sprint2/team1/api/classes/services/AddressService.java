@@ -39,6 +39,15 @@ public final class AddressService {
         return repo.findById(pk).orElse(null);
     }
     /**
+     * @name    getByNumber
+     * @desc    Get all addresses with the given street number
+     * @route   GET /api/addresses/{number}
+     * @access  private
+     */
+    public List<AddressEntity> getByNumber(int number) {
+        return repo.findAllByNumber(number);
+    }
+    /**
      * @name    getByStreet
      * @desc    Get all addresses on a street
      * @route   GET /api/addresses/{street}
