@@ -17,9 +17,6 @@ public abstract class DataEntity {
     public final UUID getPk() {
         return pk;
     }
-    public final void setPk(UUID pk) {
-        this.pk = pk;
-    }
     public final boolean isActive() {
         return active;
     }
