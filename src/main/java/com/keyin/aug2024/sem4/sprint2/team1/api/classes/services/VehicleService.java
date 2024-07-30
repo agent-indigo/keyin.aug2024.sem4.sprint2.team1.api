@@ -107,7 +107,7 @@ public final class VehicleService {
      * @route   GET /api/vehicles/{stdIns}
      * @access  private
      */
-    public List<VehicleEntity> getByStdInd(float stdIns) {
+    public List<VehicleEntity> getByStdIns(float stdIns) {
         return repo.findAllByStdIns(stdIns);
     }
     /**
