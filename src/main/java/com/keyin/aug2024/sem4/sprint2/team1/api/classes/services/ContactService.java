@@ -254,7 +254,7 @@ public final class ContactService {
         return repo.save(current);
     }
     /**
-     * @name    addPHone
+     * @name    addPhone
      * @desc    Add a phone number to a contact
      * @route   POST /api/contacts/{pk}/phones
      * @access  private
@@ -268,7 +268,7 @@ public final class ContactService {
         return repo.save(current);
     }
     /**
-     * @name    addphones
+     * @name    addPhones
      * @desc    Add phone numbers to a contact
      * @route   POST /api/contacts/{pk}
      * @access  private
