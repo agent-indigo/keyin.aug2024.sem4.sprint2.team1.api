@@ -194,7 +194,7 @@ public final class VehicleService {
     /**
      * @name    getAllWithStdUnder
      * @desc    Get all vehicles under the given standard rate
-     * @route   GET /api/vehicles/active
+     * @route   GET /api/vehicles/stdUnder/{max}
      * @access  private
      */
     public List<VehicleEntity> getAllWithStdUnder(float max) {
@@ -203,7 +203,7 @@ public final class VehicleService {
     /**
      * @name    getAllWithPremUnder
      * @desc    Get all vehicles under the given premium rate
-     * @route   GET /api/vehicles/active
+     * @route   GET /api/vehicles/premUnder/{max}
      * @access  private
      */
     public List<VehicleEntity> getAllWithPremUnder(float max) {
